@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>יוצר שירים ב-AI</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>צור שיר חדש 🎵</h1>
+      <p>תאר את נושא השיר ואני אצור אותו עבורך:</p>
+      <textarea id="prompt" placeholder="למשל: שיר על חתול שחור שחי בירח..."></textarea>
+      <button id="generateBtn">צור שיר</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('generateBtn');
+    const input = document.getElementById('prompt');
+    const result = document.getElementById('result');
+
+    // Mock AI generator logic
+    const dummyLyrics = [
+      "בין כוכבים רחוקים ושקטים,\nחתול שחור מטייל בין עננים.\nלא מחפש חלב או דגים,\nרק מסתכל על ארץ, מרחוק מביט.\n\nהלילה קר, הלב פועם,\nעל הירח הוא מלך, בלי אף אדם.",
+      "ים כחול שוטף את החוף,\nהגלים שרים שיר של שוב.\nהרוח לוחשת סודות עתיקים,\nעל אהבה שצומחת בין סלעים.",
+      "עירוני, סואן, אורות ניאון,\nאנשים רצים, בלי שום כיוון.\nאבל בפינה, בצל של עץ,\nצומח פרח, שקט ואמיץ."
+    ];
+
+    btn.addEventListener('click', () => {
+      const text = input.value.trim();
+      if (!text) {
+        alert('אנא הזן נושא לשיר');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = 'חושב על מילים...';
+      result.innerText = 'מייצר שיר...';
+
+      // Simulating network delay to external AI endpoint
+      setTimeout(() => {
+        const randomLyrics = dummyLyrics[Math.floor(Math.random() * dummyLyrics.length)];
+        result.innerText = randomLyrics;
+        btn.disabled = false;
+        btn.innerText = 'צור שיר';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
